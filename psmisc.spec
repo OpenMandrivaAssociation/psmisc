@@ -1,7 +1,7 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.5
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPL
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
