@@ -1,13 +1,13 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	22.2
-Release:	%mkrel 2
+Version:	22.5
+Release:	%mkrel 1
 License:	GPL
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
-BuildRequires:	ncurses-devel
 Source0:	http://download.sourceforge.net/psmisc/%{name}-%{version}.tar.bz2
-Patch1:		psmisc-21.9-libsafe.patch.bz2
+Patch1:		%{name}-22.5-libsafe.patch
+BuildRequires:	ncurses-devel
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -23,25 +23,33 @@ of processes that are using specified files or filesystems.
 %patch1 -p1
 
 %build
-%configure
+%configure2_5x \
+	--disable-rpath
+
+%make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall
-mkdir $RPM_BUILD_ROOT/sbin
-mv $RPM_BUILD_ROOT%{_bindir}/fuser $RPM_BUILD_ROOT/sbin
+rm -rf %{buildroot}
+
+%makeinstall_std
+
+mkdir %{buildroot}/sbin
+mv %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
 %find_lang %{name}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
+%doc AUTHORS COPYING ChangeLog README
 /sbin/fuser
+%{_bindir}/peekfd
 %{_bindir}/killall
 %{_bindir}/pstree*
 %{_bindir}/oldfuser
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/pstree.1*
+%{_mandir}/man1/peekfd.1.*
