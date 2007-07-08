@@ -45,11 +45,15 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README
 /sbin/fuser
-%{_bindir}/peekfd
 %{_bindir}/killall
 %{_bindir}/pstree*
 %{_bindir}/oldfuser
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/pstree.1*
+%ifarch i586
+%{_bindir}/peekfd
 %{_mandir}/man1/peekfd.1.*
+%else
+%exclude %{_mandir}/man1/peekfd.1.*
+%endif
