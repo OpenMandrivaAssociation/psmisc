@@ -1,14 +1,14 @@
-Summary:	Utilities for managing processes on your system
-Name:		psmisc
-Version:	22.5
-Release:	%mkrel 2
-License:	GPL
-Group:		Monitoring
-Url:		http://psmisc.sourceforge.net/
-Source0:	http://download.sourceforge.net/psmisc/%{name}-%{version}.tar.bz2
-Patch1:		%{name}-22.5-libsafe.patch
-BuildRequires:	ncurses-devel
-Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Name:           psmisc
+Version:        22.6
+Release:        %mkrel 1
+Summary:        Utilities for managing processes on your system
+License:        GPL
+Group:          Monitoring
+URL:            http://psmisc.sourceforge.net/
+Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
+Patch1:         %{name}-22.5-libsafe.patch
+BuildRequires:  ncurses-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The psmisc package contains utilities for managing processes on your
@@ -23,18 +23,16 @@ of processes that are using specified files or filesystems.
 %patch1 -p1
 
 %build
-%configure2_5x \
-	--disable-rpath
-
-%make
+%{configure2_5x} \
+        --disable-rpath
+%{make}
 
 %install
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+%{makeinstall_std}
 
-%makeinstall_std
-
-mkdir %{buildroot}/sbin
-mv %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
+%{__mkdir_p} %{buildroot}/sbin
+%{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
 %find_lang %{name}
 
