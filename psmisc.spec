@@ -8,6 +8,7 @@ URL:            http://psmisc.sourceforge.net/
 Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
 Patch1:         %{name}-22.5-libsafe.patch
 BuildRequires:  ncurses-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 The psmisc package contains utilities for managing processes on your
