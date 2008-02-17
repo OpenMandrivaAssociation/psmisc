@@ -1,11 +1,12 @@
 Name:           psmisc
 Version:        22.6
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Utilities for managing processes on your system
-License:        GPL
+License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
+Patch0:		psmisc-22.6-peekfd64.patch
 Patch1:         %{name}-22.5-libsafe.patch
 BuildRequires:  ncurses-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -19,10 +20,14 @@ processes identified by name.  The fuser command identifies the PIDs
 of processes that are using specified files or filesystems.
 
 %prep
-%setup -q 
+%setup -q
+%patch0 -p1
 %patch1 -p1
 
 %build
+autoreconf
+export CFLAGS="%{optflags} -D_GNU_SOURCE"
+
 %{configure2_5x} \
         --disable-rpath
 %{make}
@@ -34,6 +39,10 @@ of processes that are using specified files or filesystems.
 %{__mkdir_p} %{buildroot}/sbin
 %{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
+%ifnarch %ix86 x86_64 ppc ppc64 sparc
+%{__rm} -f %{buildroot}%{_mandir}/man1/peekfd.1*
+%endif
+
 %find_lang %{name}
 
 %clean
@@ -41,7 +50,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog README
+%doc AUTHORS ChangeLog README
 /sbin/fuser
 %{_bindir}/killall
 %{_bindir}/pstree*
@@ -49,9 +58,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/pstree.1*
-%ifarch i586
+%ifarch %ix86 x86_64 ppc ppc64 sparc
 %{_bindir}/peekfd
 %{_mandir}/man1/peekfd.1.*
-%else
-%exclude %{_mandir}/man1/peekfd.1.*
 %endif
