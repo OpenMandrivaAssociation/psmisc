@@ -44,7 +44,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %{__mkdir_p} %{buildroot}/sbin
 %{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
-%ifnarch %ix86 x86_64 ppc ppc64 sparc
+%ifnarch %ix86 ppc ppc64 sparc
 %{__rm} -f %{buildroot}%{_mandir}/man1/peekfd.1*
 %endif
 
@@ -63,7 +63,7 @@ rm -rf %{buildroot}
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/pstree.1*
-%ifarch %ix86 x86_64 ppc ppc64 sparc
+%ifarch %ix86 ppc ppc64 sparc
 %{_bindir}/peekfd
 %{_mandir}/man1/peekfd.1.*
 %endif
