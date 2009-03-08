@@ -6,7 +6,6 @@ License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
-Patch0:		%{name}-22.6-peekfd64.patch
 Patch1:         %{name}-22.5-libsafe.patch
 Patch2:		%{name}-22.6-pstree-overflow.patch
 # fix build of peekfs
@@ -24,7 +23,6 @@ of processes that are using specified files or filesystems.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
