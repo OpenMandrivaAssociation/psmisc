@@ -1,15 +1,14 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
-Version:        22.6
-Release:        %mkrel 5
+Version:        22.7
+Release:        %mkrel 1
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
-Patch1:         %{name}-22.5-libsafe.patch
-Patch2:		%{name}-22.6-pstree-overflow.patch
-# fix build of peekfs
-Patch3:     %{name}-22.6-types.patch
+# Fix building of peekfd on x86_64
+# http://bugs.archlinux.org/task/14514
+Patch0:		%{name}-22.7-checkregs-fix.patch
 BuildRequires:  ncurses-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
@@ -23,9 +22,7 @@ of processes that are using specified files or filesystems.
 
 %prep
 %setup -q
-%patch1 -p1
-%patch2 -p1
-%patch3 -p0
+%patch0 -p0 -b .header
 
 %build
 autoreconf
@@ -42,10 +39,6 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %{__mkdir_p} %{buildroot}/sbin
 %{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
-%ifnarch %ix86 ppc ppc64 sparc
-%{__rm} -f %{buildroot}%{_mandir}/man1/peekfd.1*
-%endif
-
 %find_lang %{name}
 
 %clean
@@ -57,11 +50,8 @@ rm -rf %{buildroot}
 /sbin/fuser
 %{_bindir}/killall
 %{_bindir}/pstree*
-%{_bindir}/oldfuser
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/pstree.1*
-%ifarch %ix86 ppc ppc64 sparc
 %{_bindir}/peekfd
-%{_mandir}/man1/peekfd.1.*
-%endif
+%{_mandir}/man1/peekfd.1*
