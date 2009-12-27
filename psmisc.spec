@@ -1,11 +1,11 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
-Version:        22.8
+Version:        22.9
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
-Source0:        http://superb-east.dl.sourceforge.net/sourceforge/psmisc/psmisc-%{version}.tar.gz
+Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
 # Fix building of peekfd on x86_64
 # http://bugs.archlinux.org/task/14514
 Patch0:		%{name}-22.7-checkregs-fix.patch
@@ -25,7 +25,7 @@ of processes that are using specified files or filesystems.
 %patch0 -p0 -b .header
 
 %build
-autoreconf
+autoreconf -fis
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
 %{configure2_5x} \
@@ -49,9 +49,11 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog README
 /sbin/fuser
 %{_bindir}/killall
+%{_bindir}/prtstat
 %{_bindir}/pstree*
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
+%{_mandir}/man1/prtstat.1*
 %{_mandir}/man1/pstree.1*
 %{_bindir}/peekfd
 %{_mandir}/man1/peekfd.1*
