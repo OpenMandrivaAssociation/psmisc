@@ -10,6 +10,8 @@ Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-
 # http://bugs.archlinux.org/task/14514
 Patch0:		%{name}-22.7-checkregs-fix.patch
 BuildRequires:  ncurses-devel
+# For patch0
+BuildRequires:	gettext-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -25,6 +27,7 @@ of processes that are using specified files or filesystems.
 %patch0 -p0 -b .header
 
 %build
+# for patch0
 autoreconf -fis
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
