@@ -1,17 +1,12 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
-Version:        22.12
+Version:        22.13
 Release:        %mkrel 1
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
-# Fix building of peekfd on x86_64
-# http://bugs.archlinux.org/task/14514
-Patch0:		%{name}-22.12-checkregs-fix.patch
 BuildRequires:  ncurses-devel
-# For patch0
-BuildRequires:	gettext-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -24,11 +19,8 @@ of processes that are using specified files or filesystems.
 
 %prep
 %setup -q
-%patch0 -p0 -b .header
 
 %build
-# for patch0
-autoreconf -fis
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
 %{configure2_5x} \
