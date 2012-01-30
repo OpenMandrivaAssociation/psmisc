@@ -1,16 +1,13 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
-Version:        22.14
-Release:        %mkrel 2
+Version:        22.15
+Release:        %mkrel 1
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  ncurses-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-
-# can be dropped once 22.15 will be released.
-Patch0:		fuser-fix--s-option.patch
 
 %description
 The psmisc package contains utilities for managing processes on your
@@ -22,7 +19,6 @@ of processes that are using specified files or filesystems.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
@@ -38,7 +34,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %{__mkdir_p} %{buildroot}/sbin
 %{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
-%find_lang %{name}
+%find_lang %{name} %{name}.lang
 
 %clean
 rm -rf %{buildroot}
