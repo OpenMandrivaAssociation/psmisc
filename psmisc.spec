@@ -1,15 +1,12 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
-Version:        22.15
-Release:        %mkrel 2
+Version:        22.16
+Release:        1
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
 Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  ncurses-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
-
-Patch0:		psmisc-22.15-overrun.patch
 
 %description
 The psmisc package contains utilities for managing processes on your
@@ -22,8 +19,6 @@ of processes that are using specified files or filesystems.
 %prep
 %setup -q
 
-%patch0 -p1
-
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
@@ -32,7 +27,6 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %{make}
 
 %install
-%{__rm} -rf %{buildroot}
 %{makeinstall_std}
 
 %{__mkdir_p} %{buildroot}/sbin
@@ -40,11 +34,7 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
 %find_lang %{name} %{name}.lang
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog README
 /sbin/fuser
 %{_bindir}/killall
