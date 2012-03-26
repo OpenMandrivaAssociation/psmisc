@@ -1,7 +1,7 @@
 Summary:        Utilities for managing processes on your system
 Name:           psmisc
 Version:        22.16
-Release:        1
+Release:        2
 License:        GPLv2+
 Group:          Monitoring
 URL:            http://psmisc.sourceforge.net/
@@ -22,12 +22,12 @@ of processes that are using specified files or filesystems.
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
-%{configure2_5x} \
+%configure2_5x \
         --disable-rpath
-%{make}
+%make
 
 %install
-%{makeinstall_std}
+%makeinstall_std
 
 %{__mkdir_p} %{buildroot}/sbin
 %{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
