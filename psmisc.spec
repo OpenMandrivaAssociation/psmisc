@@ -1,12 +1,12 @@
-Summary:        Utilities for managing processes on your system
-Name:           psmisc
-Version:        22.18
-Release:        1
-License:        GPLv2+
-Group:          Monitoring
-URL:            http://psmisc.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:  ncurses-devel
+Summary:	Utilities for managing processes on your system
+Name:		psmisc
+Version:	22.19
+Release:	1
+License:	GPLv2+
+Group:		Monitoring
+URL:		http://psmisc.sourceforge.net/
+Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	ncurses-devel
 
 %description
 The psmisc package contains utilities for managing processes on your
@@ -29,8 +29,8 @@ export CFLAGS="%{optflags} -D_GNU_SOURCE"
 %install
 %makeinstall_std
 
-%{__mkdir_p} %{buildroot}/sbin
-%{__mv} %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
+mkdir -p %{buildroot}/sbin
+mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 
 %find_lang %{name} %{name}.lang
 
