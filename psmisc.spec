@@ -1,6 +1,6 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	22.19
+Version:	22.20
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
