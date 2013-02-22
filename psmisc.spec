@@ -22,8 +22,7 @@ of processes that are using specified files or filesystems.
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
 
-%configure2_5x \
-        --disable-rpath
+%configure2_5x	--disable-rpath
 %make
 
 %install
