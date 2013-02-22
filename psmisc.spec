@@ -1,12 +1,12 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.20
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:	ncurses-devel
+BuildRequires:	pkgconfig(ncursesw)
 
 %description
 The psmisc package contains utilities for managing processes on your
