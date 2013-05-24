@@ -1,7 +1,8 @@
+%bcond_with	crosscompile
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.20
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 URL:		http://psmisc.sourceforge.net/
@@ -21,6 +22,10 @@ of processes that are using specified files or filesystems.
 
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
+%if %{with crosscompile}
+export ac_cv_func_malloc_0_nonnull=yes
+export ac_cv_func_realloc_0_nonnull=yes
+%endif
 
 %configure2_5x	--disable-rpath
 %make
