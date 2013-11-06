@@ -1,11 +1,12 @@
 %bcond_with	crosscompile
+
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.20
 Release:	3
 License:	GPLv2+
 Group:		Monitoring
-URL:		http://psmisc.sourceforge.net/
+Url:		http://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(ncursesw)
 
@@ -27,7 +28,7 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
-%configure2_5x	--disable-rpath
+%configure2_5x
 %make
 
 %install
@@ -50,3 +51,4 @@ mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 %{_mandir}/man1/pstree.1*
 %{_bindir}/peekfd
 %{_mandir}/man1/peekfd.1*
+
