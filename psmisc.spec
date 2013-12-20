@@ -2,8 +2,8 @@
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	22.20
-Release:	7
+Version:	22.21
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
@@ -49,6 +49,9 @@ mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/prtstat.1*
 %{_mandir}/man1/pstree.1*
+#need patch for aarch64
+%ifnarch aarch64
 %{_bindir}/peekfd
+%endif
 %{_mandir}/man1/peekfd.1*
 
