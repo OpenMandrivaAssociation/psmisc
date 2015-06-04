@@ -3,7 +3,7 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.21
-Release:	5
+Release:	6
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
@@ -28,7 +28,7 @@ export ac_cv_func_malloc_0_nonnull=yes
 export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
-%configure2_5x
+%configure
 %make
 
 %install
@@ -54,4 +54,3 @@ mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 %{_bindir}/peekfd
 %endif
 %{_mandir}/man1/peekfd.1*
-
