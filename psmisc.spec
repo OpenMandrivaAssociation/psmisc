@@ -3,11 +3,13 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	22.21
-Release:	10
+Release:	11
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
+# (tpg) https://gitlab.com/psmisc/psmisc/issues/4
+Patch0: 0001-Avoid-possible-crash-and-memory-leak-in-killall.patch
 BuildRequires:	pkgconfig(ncursesw)
 
 %description
@@ -20,6 +22,7 @@ of processes that are using specified files or filesystems.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
