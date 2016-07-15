@@ -1,0 +1,41 @@
+From 36291b6bcaa8037b910b173888819b1e035a49b0 Mon Sep 17 00:00:00 2001
+From: Radu Rendec <radu.rendec@mindbit.ro>
+Date: Thu, 30 Jun 2016 18:15:21 +0200
+Subject: [PATCH] Avoid possible crash and memory leak in killall
+
+In the case of a command line match, load_proc_cmdline would return a
+pointer that was not obtained from malloc, which then would be freed in
+kill_all. This behavior could result in a SIGSEGV.
+
+In the case of an empty command line, load_proc_cmdline would return -1,
+causing its internal buffer to be leaked in kill_all.
+
+Signed-off-by: Radu Rendec <radu.rendec@mindbit.ro>
+---
+ src/killall.c |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/killall.c b/src/killall.c
+index 617b38b..d366c16 100644
+--- a/src/killall.c
++++ b/src/killall.c
+@@ -364,12 +364,14 @@ load_proc_cmdline(const pid_t pid, const char *comm, char **command, int *got_lo
+ 	p = p ? p+1 : command_buf;
+ 	if (strncmp(p, comm, COMM_LEN-1) == 0) {
+ 	    okay = 1;
+-	    *command = p;
++	    if (!(*command = strdup(p)))
++		exit(1);
+ 	    break;
+ 	}
+     }
+     (void) fclose(file);
+-    
++    free(command_buf);
++
+     if (exact && !okay)
+     {
+ 	if (verbose)
+-- 
+1.7.1
+
