@@ -1,0 +1,12 @@
+diff -Naur psmisc-22.21/src/fuser.c psmisc-22.21.tpg/src/fuser.c
+--- psmisc-22.21/src/fuser.c	2013-04-01 07:30:27.000000000 +0000
++++ psmisc-22.21.tpg/src/fuser.c	2016-07-15 19:46:23.353212487 +0000
+@@ -1848,7 +1848,7 @@
+ 				len = write(pipes[1], buf, sizeof(struct stat));
+ 			while (len < 0 && errno == EINTR);
+ 		close(pipes[1]);
+-		exit(ret);
++		_exit(ret);
+ 	default:
+ 		close(pipes[1]);
+ 		if (sigsetjmp(jenv, 1)) {
