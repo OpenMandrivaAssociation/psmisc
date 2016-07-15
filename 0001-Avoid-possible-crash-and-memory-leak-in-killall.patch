@@ -15,27 +15,24 @@ Signed-off-by: Radu Rendec <radu.rendec@mindbit.ro>
  src/killall.c |    6 ++++--
  1 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/src/killall.c b/src/killall.c
-index 617b38b..d366c16 100644
---- a/src/killall.c
-+++ b/src/killall.c
-@@ -364,12 +364,14 @@ load_proc_cmdline(const pid_t pid, const char *comm, char **command, int *got_lo
- 	p = p ? p+1 : command_buf;
- 	if (strncmp(p, comm, COMM_LEN-1) == 0) {
- 	    okay = 1;
--	    *command = p;
-+	    if (!(*command = strdup(p)))
-+		exit(1);
- 	    break;
- 	}
-     }
-     (void) fclose(file);
--    
-+    free(command_buf);
+diff -Naur psmisc-22.21/src/killall.c psmisc-22.21.tpg/src/killall.c
+--- psmisc-22.21/src/killall.c	2013-04-01 07:30:27.000000000 +0000
++++ psmisc-22.21.tpg/src/killall.c	2016-07-15 19:49:26.683568941 +0000
+@@ -436,11 +436,14 @@
+             p = p ? p+1 : command_buf;
+             if (strncmp(p, comm, COMM_LEN-1) == 0) {
+               okay = 1;
+-              command = p;
++              if (!(*command = strdup(p)))
++                  exit(1);
+               break;
+             }
+           }
+           (void) fclose(file);
++          free(command_buf);
 +
-     if (exact && !okay)
-     {
- 	if (verbose)
--- 
+ 	  if (exact && !okay)
+ 	    {
+ 	      if (verbose)
+--
 1.7.1
-

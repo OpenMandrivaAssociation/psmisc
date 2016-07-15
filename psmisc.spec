@@ -9,7 +9,9 @@ Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
 # (tpg) https://gitlab.com/psmisc/psmisc/issues/4
-Patch0: 0001-Avoid-possible-crash-and-memory-leak-in-killall.patch
+Patch0:		0001-Avoid-possible-crash-and-memory-leak-in-killall.patch
+# (tpg) from PLD
+Patch1:		fuser-hang.patch
 BuildRequires:	pkgconfig(ncursesw)
 
 %description
