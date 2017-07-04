@@ -2,12 +2,12 @@
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	22.21
+Version:	23.1
 Release:	12
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.xz
 # (tpg) from PLD
 Patch1:		fuser-hang.patch
 BuildRequires:	pkgconfig(ncursesw)
