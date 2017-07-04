@@ -8,8 +8,6 @@ License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.xz
-# (tpg) from PLD
-Patch1:		fuser-hang.patch
 BuildRequires:	pkgconfig(ncursesw)
 
 %description
