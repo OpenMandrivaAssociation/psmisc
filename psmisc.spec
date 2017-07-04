@@ -1,4 +1,5 @@
 %bcond_with	crosscompile
+%define _disable_rebuild_configure 1
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
