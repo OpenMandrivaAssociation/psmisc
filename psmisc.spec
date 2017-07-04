@@ -47,10 +47,12 @@ mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 %{_bindir}/killall
 %{_bindir}/prtstat
 %{_bindir}/pstree*
+%{_bindir}/pslog
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/prtstat.1*
 %{_mandir}/man1/pstree.1*
+%{_mandir}/man1/pslog.1*
 #need patch for aarch64
 %ifnarch aarch64
 %{_bindir}/peekfd
