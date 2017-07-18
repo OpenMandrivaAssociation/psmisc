@@ -1,15 +1,14 @@
 %bcond_with	crosscompile
+%define _disable_rebuild_configure 1
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	22.21
-Release:	12
+Version:	23.1
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.gz
-# (tpg) from PLD
-Patch1:		fuser-hang.patch
+Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(ncursesw)
 
 %description
@@ -48,10 +47,12 @@ mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
 %{_bindir}/killall
 %{_bindir}/prtstat
 %{_bindir}/pstree*
+%{_bindir}/pslog
 %{_mandir}/man1/fuser.1*
 %{_mandir}/man1/killall.1*
 %{_mandir}/man1/prtstat.1*
 %{_mandir}/man1/pstree.1*
+%{_mandir}/man1/pslog.1*
 #need patch for aarch64
 %ifnarch aarch64
 %{_bindir}/peekfd
