@@ -3,8 +3,8 @@
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	23.1
-Release:	2
+Version:	23.2
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
@@ -20,8 +20,7 @@ processes identified by name.  The fuser command identifies the PIDs
 of processes that are using specified files or filesystems.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 export CFLAGS="%{optflags} -D_GNU_SOURCE"
@@ -31,10 +30,10 @@ export ac_cv_func_realloc_0_nonnull=yes
 %endif
 
 %configure
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 mkdir -p %{buildroot}/sbin
 mv -f %{buildroot}%{_bindir}/fuser %{buildroot}/sbin
