@@ -3,8 +3,8 @@
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
-Version:	23.2
-Release:	2
+Version:	23.3
+Release:	1
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
