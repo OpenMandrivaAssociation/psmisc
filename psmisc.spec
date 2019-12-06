@@ -1,10 +1,12 @@
-%bcond_with	crosscompile
+%global optflags %{optflags} -Oz
+
+%bcond_with crosscompile
 %define _disable_rebuild_configure 1
 
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	23.3
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
