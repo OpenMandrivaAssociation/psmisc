@@ -6,7 +6,7 @@
 Summary:	Utilities for managing processes on your system
 Name:		psmisc
 Version:	23.5
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Monitoring
 Url:		http://psmisc.sourceforge.net/
@@ -37,14 +37,10 @@ export ac_cv_func_realloc_0_nonnull=yes
 %install
 %make_install
 
-mkdir -p %{buildroot}/sbin
-ln -sf %{_bindir}/fuser %{buildroot}/sbin/fuser
-
 %find_lang %{name} --all-name --with-man
 
 %files -f %{name}.lang
 %doc AUTHORS ChangeLog README
-/sbin/fuser
 %{_bindir}/fuser
 %{_bindir}/killall
 %{_bindir}/prtstat
