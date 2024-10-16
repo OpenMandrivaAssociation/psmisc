@@ -9,7 +9,7 @@ Version:	23.7
 Release:	1
 License:	GPLv2+
 Group:		Monitoring
-Url:		http://psmisc.sourceforge.net/
+Url:		https://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(ncursesw)
 
