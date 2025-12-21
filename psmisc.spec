@@ -11,6 +11,11 @@ License:	GPLv2+
 Group:		Monitoring
 Url:		https://psmisc.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/psmisc/%{name}/%{name}-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(ncursesw)
 
 %description
